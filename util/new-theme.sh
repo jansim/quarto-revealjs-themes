@@ -69,7 +69,6 @@ cat >> "$root/themes.yml" <<YAML
 - title: $title
   path: themes/$id.html
   image: screenshots/$id/title.png
-  format: $id-revealjs
   description: >
     TODO: describe the $title theme.
 YAML
