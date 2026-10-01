@@ -6,3 +6,9 @@
   description: >
     Two risograph inks on uncoated paper. Fluorescent pink over medium blue,
     overprinting to violet, with halftone fields and misregistered type.
+- title: Nocturne
+  path: themes/nocturne.html
+  image: screenshots/nocturne/title.png
+  description: >
+    Dark keynote, stage-ready. Serif drama on near-black, quiet orbit lines
+    and one luminous lime accent that the italics carry.

@@ -8,6 +8,7 @@ can compare them side by side on the
 | Theme | Format | Preview |
 |-------|--------|---------|
 | **Riso Zine**: two risograph inks on uncoated paper, with halftone fields and misregistered type | `riso-revealjs` | [![Riso Zine](screenshots/riso.png)](https://jansim.github.io/quarto-themes/themes/riso.html) |
+| **Nocturne**: dark keynote, with serif drama on near-black, quiet orbit lines and one luminous accent | `nocturne-revealjs` | [![Nocturne](screenshots/nocturne.png)](https://jansim.github.io/quarto-themes/themes/nocturne.html) |
 
 ## Use
 
