@@ -1,0 +1,11 @@
+# Files that `quarto use template` should not copy into a user's project.
+.github/
+_quarto.yml
+index.qmd
+themes/
+themes.yml
+screenshots/
+scripts/
+package.json
+package-lock.json
+README.md

@@ -1,0 +1,34 @@
+---
+title: Quarto Reveal.js Themes
+subtitle: A collection of themes for Quarto presentations
+listing:
+  id: themes
+  contents: themes.yml
+  type: grid
+  grid-columns: 2
+  image-height: 260px
+  fields: [image, title, description]
+  sort: false
+---
+
+Every theme below renders the **same** [sample deck](https://github.com/jansim/quarto-themes/blob/main/template.qmd),
+so you can compare them like for like. Click a theme to open its live slides.
+
+## Use a theme
+
+Install the extensions into an existing project:
+
+```bash
+quarto add jansim/quarto-themes
+```
+
+Then set the theme's format in your document's front matter, e.g.
+
+```yaml
+format: riso-revealjs
+```
+
+## Themes
+
+::: {#themes}
+:::

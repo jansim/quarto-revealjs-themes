@@ -1,0 +1,113 @@
+---
+title: Reproducible reports with Quarto
+subtitle: a field guide
+author:
+  - name: Your Name
+    affiliations: Your Institution
+date: 2026-10-01
+format: riso-revealjs
+---
+
+## Welcome
+
+This deck is the shared sample used to preview **every** theme in this
+collection. It exercises the elements most talks need:
+
+- Plain bullet points, with [links](https://quarto.org/docs/presentations/revealjs/)
+  and `inline code`
+- [Alerts]{.alert} and [highlighted phrases]{.highlight}
+    - and nested bullets
+- Code, tables, callouts, quotes and columns
+
+# Writing
+
+## Text and emphasis
+
+Slides should say one thing well. Use **bold** for weight, *italics* for tone
+and [alert]{.alert} for the one phrase the audience must remember.
+
+> Code runs where the prose lives, so results never drift out of date.
+
+Numbered lists work too:
+
+1. Write your analysis in plain text
+2. Render to slides, documents or websites
+3. Re-render whenever the data changes
+
+## Two columns
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Left
+
+- One source document
+- Many output formats
+- Version control friendly
+:::
+
+::: {.column width="50%"}
+### Right
+
+- HTML slides via reveal.js
+- PDF via Typst or LaTeX
+- Word, PowerPoint and more
+:::
+
+::::
+
+# Computation
+
+## Code runs where the prose lives
+
+- Chunks execute at render time
+- Results stay in sync with the text
+- Skip re-runs with `freeze: auto`
+
+```python
+# mean bill length by species
+import seaborn as sns
+
+df = sns.load_dataset("penguins")
+(df.groupby("species")
+   .bill_length_mm
+   .mean()
+   .round(1))
+```
+
+## Palmer penguins at a glance
+
+| Species   | Count | Bill (mm) | Mass (g) |
+|-----------|------:|----------:|---------:|
+| Adelie    |   152 |      38.8 |    3,701 |
+| Chinstrap |    68 |      48.8 |    3,733 |
+| Gentoo    |   124 |      47.5 |    5,076 |
+
+: Data: palmerpenguins (Horst, Hill & Gorman, 2020)
+
+::: {.callout-tip}
+## Tip!
+
+Caption any table with the `tbl-cap` chunk option.
+:::
+
+## Maths and callouts
+
+The mean of $n$ observations is
+
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
+$$
+
+::: {.callout-note}
+Callouts come in five flavours: note, tip, important, caution and warning.
+:::
+
+# Wrapping up
+
+## Thank you {.center}
+
+[Slides made with Quarto]{.sticker}
+
+Questions? Find the source at
+[github.com/jansim/quarto-themes](https://github.com/jansim/quarto-themes).

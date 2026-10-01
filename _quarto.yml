@@ -1,0 +1,17 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - themes/*.qmd
+  resources:
+    - screenshots/
+
+website:
+  title: Quarto Reveal.js Themes
+  site-url: https://jansim.github.io/quarto-themes/
+  repo-url: https://github.com/jansim/quarto-themes
+  navbar:
+    right:
+      - icon: github
+        href: https://github.com/jansim/quarto-themes
