@@ -1,0 +1,16 @@
+title: Scholar
+author: Jan Simson
+version: 0.1.0
+quarto-required: ">=1.4.0"
+contributes:
+  formats:
+    revealjs:
+      theme: [default, scholar.scss]
+      highlight-style: scholar.theme
+      margin: 0
+      code-line-numbers: false
+      slide-number: c
+      transition: none
+      date-format: long
+      # keep every slide laid out, so CSS section counters stay correct
+      view-distance: 100

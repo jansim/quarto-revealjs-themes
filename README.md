@@ -10,6 +10,7 @@ can compare them side by side on the
 | **Riso Zine**: two risograph inks on uncoated paper, with halftone fields and misregistered type | `riso-revealjs` | [![Riso Zine](screenshots/riso.png)](https://jansim.github.io/quarto-themes/themes/riso.html) |
 | **Nocturne**: dark keynote, with serif drama on near-black, quiet orbit lines and one luminous accent | `nocturne-revealjs` | [![Nocturne](screenshots/nocturne.png)](https://jansim.github.io/quarto-themes/themes/nocturne.html) |
 | **Blueprint**: technical drawing on cyanotype blue, with a faint grid, dimension lines and a title block | `blueprint-revealjs` | [![Blueprint](screenshots/blueprint.png)](https://jansim.github.io/quarto-themes/themes/blueprint.html) |
+| **Scholar**: the journal article, projected, with book serifs, booktabs tables, running heads and small-caps labels | `scholar-revealjs` | [![Scholar](screenshots/scholar.png)](https://jansim.github.io/quarto-themes/themes/scholar.html) |
 
 ## Use
 
