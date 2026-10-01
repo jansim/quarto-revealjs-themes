@@ -5,7 +5,8 @@
 // Expects the site to be rendered already (`quarto render`). For each
 // _site/themes/<theme>.html it captures a fixed set of slides from the shared
 // template into screenshots/<theme>/ (and mirrors them into _site/ so a single
-// render + screenshot pass produces a complete site).
+// render + screenshot pass produces a complete site). A 2x2 overview of those
+// slides is written to screenshots/<theme>.png.
 
 import { chromium } from "playwright";
 import { existsSync } from "node:fs";
@@ -71,7 +72,7 @@ async function captureTheme(browser, theme) {
   await page.close();
 
   // 2x2 overview, handy for READMEs
-  const overview = path.join(themeOut, "overview.png");
+  const overview = path.join(outDir, `${theme}.png`);
   const grid = await browser.newPage({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1 });
   const imgs = (
     await Promise.all(files.slice(0, 4).map(async (f) => (await readFile(f)).toString("base64")))
@@ -83,14 +84,14 @@ async function captureTheme(browser, theme) {
   await grid.waitForFunction(() => [...document.images].every((i) => i.complete));
   await grid.locator("div").screenshot({ path: overview });
   await grid.close();
-  files.push(overview);
 
   // mirror into the rendered site
   const siteOut = path.join(siteDir, "screenshots", theme);
   await mkdir(siteOut, { recursive: true });
   await Promise.all(files.map((f) => copyFile(f, path.join(siteOut, path.basename(f)))));
+  await copyFile(overview, path.join(siteDir, "screenshots", `${theme}.png`));
 
-  console.log(`  ${theme}: ${files.map((f) => path.basename(f)).join(", ")}`);
+  console.log(`  ${theme}: ${files.map((f) => path.basename(f)).join(", ")} + ${path.relative(root, overview)}`);
 }
 
 const themes = await listThemes();

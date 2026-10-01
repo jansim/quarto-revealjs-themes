@@ -7,7 +7,7 @@ can compare them side by side on the
 
 | Theme | Format | Preview |
 |-------|--------|---------|
-| **Riso Zine**: two risograph inks on uncoated paper, with halftone fields and misregistered type | `riso-revealjs` | [![Riso Zine](screenshots/riso/overview.png)](https://jansim.github.io/quarto-themes/themes/riso.html) |
+| **Riso Zine**: two risograph inks on uncoated paper, with halftone fields and misregistered type | `riso-revealjs` | [![Riso Zine](screenshots/riso.png)](https://jansim.github.io/quarto-themes/themes/riso.html) |
 
 ## Use
 
@@ -52,10 +52,11 @@ How the pieces fit together:
 2. `quarto render` builds the website: the landing page plus one deck per theme
    at `_site/themes/<id>.html`.
 3. `npm --prefix util run screenshots` opens each rendered deck in headless Chromium and
-   captures the title, a section, the code and the table slides, plus a 2x2
-   `overview.png`, into `screenshots/<id>/` (also copied into `_site/`).
-   Only `overview.png` is committed (for this README); the per-slide images,
-   including the landing page thumbnails, are regenerated on every build.
+   captures the title, a section, the code and the table slides into
+   `screenshots/<id>/`, plus a 2x2 overview at `screenshots/<id>.png` (all also
+   copied into `_site/`). Only `screenshots/<id>.png` is committed (for this
+   README); the per-slide images, including the landing page thumbnails, are
+   regenerated on every build.
 4. The GitHub Actions workflow runs both steps and deploys `_site/` to
    GitHub Pages.
 
@@ -73,7 +74,7 @@ npm --prefix util run build                     # quarto render + screenshots
 quarto preview                                  # live preview while editing a theme
 ```
 
-Commit the updated `screenshots/<id>/overview.png` so the README previews stay current.
+Commit the updated `screenshots/<id>.png` so the README previews stay current.
 
 ### Adding a theme
 
