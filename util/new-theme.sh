@@ -57,12 +57,13 @@ cat > "$root/_extensions/$id/$id.scss" <<'SCSS'
 }
 SCSS
 
+# the format goes after the include: the last front matter block wins
 cat > "$root/themes/$id.qmd" <<QMD
+{{< include ../template.qmd >}}
+
 ---
 format: $id-revealjs
 ---
-
-{{< include ../template.qmd >}}
 QMD
 
 cat >> "$root/themes.yml" <<YAML

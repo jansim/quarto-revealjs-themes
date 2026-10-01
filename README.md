@@ -34,7 +34,7 @@ quarto use template jansim/quarto-themes
 ```
 _extensions/<id>/      one Quarto extension per theme (contributes <id>-revealjs)
 template.qmd           the shared sample deck every theme renders
-themes/<id>.qmd        3-line page per theme: sets format, includes template.qmd
+themes/<id>.qmd        tiny page per theme: includes template.qmd, sets format
 themes.yml             theme registry, drives the landing page listing
 index.qmd              landing page (gallery of themes.yml)
 _quarto.yml            website project: renders index.qmd + themes/*.qmd to _site/
@@ -46,9 +46,10 @@ util/                  build tooling, kept out of the way:
 
 How the pieces fit together:
 
-1. Each page in `themes/` only sets `format: <id>-revealjs` and pulls in the
-   sample deck with `{{< include ../template.qmd >}}`. The page's `format` wins
-   over the one in the template, so the same content renders with each theme.
+1. Each page in `themes/` pulls in the sample deck with
+   `{{< include ../template.qmd >}}` and then sets `format: <id>-revealjs` in a
+   front matter block *after* the include. The last block wins, so its `format`
+   overrides the one in the template and the same content renders with each theme.
 2. `quarto render` builds the website: the landing page plus one deck per theme
    at `_site/themes/<id>.html`.
 3. `npm --prefix util run screenshots` opens each rendered deck in headless Chromium and
