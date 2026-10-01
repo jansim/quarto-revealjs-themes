@@ -54,6 +54,8 @@ How the pieces fit together:
 3. `npm --prefix util run screenshots` opens each rendered deck in headless Chromium and
    captures the title, a section, the code and the table slides, plus a 2x2
    `overview.png`, into `screenshots/<id>/` (also copied into `_site/`).
+   Only `overview.png` is committed (for this README); the per-slide images,
+   including the landing page thumbnails, are regenerated on every build.
 4. The GitHub Actions workflow runs both steps and deploys `_site/` to
    GitHub Pages.
 
@@ -71,7 +73,7 @@ npm --prefix util run build                     # quarto render + screenshots
 quarto preview                                  # live preview while editing a theme
 ```
 
-Commit the updated `screenshots/` so the README previews stay current.
+Commit the updated `screenshots/<id>/overview.png` so the README previews stay current.
 
 ### Adding a theme
 

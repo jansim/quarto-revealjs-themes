@@ -6,3 +6,7 @@ template.html
 .DS_Store
 
 **/*.quarto_ipynb
+
+# per-slide screenshots are regenerated in CI; only the overview is kept in git
+/screenshots/*/*.png
+!/screenshots/*/overview.png
