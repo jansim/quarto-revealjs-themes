@@ -3,7 +3,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "render": "quarto render ..",
     "screenshots": "node screenshots.mjs",
     "build": "quarto render .. && node screenshots.mjs"
   },

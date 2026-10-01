@@ -73,9 +73,9 @@ async function captureTheme(browser, theme) {
 
   // 2x2 overview, handy for READMEs
   const overview = path.join(outDir, `${theme}.png`);
-  const grid = await browser.newPage({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1 });
+  const grid = await browser.newPage({ viewport: VIEWPORT, deviceScaleFactor: 1 });
   const imgs = (
-    await Promise.all(files.slice(0, 4).map(async (f) => (await readFile(f)).toString("base64")))
+    await Promise.all(files.map(async (f) => (await readFile(f)).toString("base64")))
   ).map((b64) => `<img src="data:image/png;base64,${b64}">`).join("");
   await grid.setContent(
     `<style>body{margin:0;background:#fff}div{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:16px}

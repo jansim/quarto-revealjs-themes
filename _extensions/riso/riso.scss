@@ -18,6 +18,9 @@ $riso-blue: #0078BF !default;        // medium blue
 $riso-pink-light: #FFD0E8 !default;
 $riso-pink-marker: #FFB3DC !default;
 $riso-pink-tint: #FBE1EE !default;
+$riso-blue-tint: #D6E6F4 !default;
+$riso-orange: #FF6C2F !default;
+$riso-orange-tint: #FFE0CC !default;
 $riso-code-bg: #0B5594 !default;
 
 // fonts
@@ -40,19 +43,14 @@ $presentation-font-size-root: 23px !default;
 $presentation-line-height: 1.4 !default;
 $presentation-block-margin: 16px !default;
 $presentation-heading-font: $riso-heading-font !default;
-$presentation-heading-color: $riso-ink !default;
 $presentation-heading-font-weight: 800 !default;
 $presentation-heading-letter-spacing: -0.02em !default;
 $presentation-heading-line-height: 1.05 !default;
-$presentation-heading-text-transform: none !default;
 $presentation-h1-font-size: 66px !default;
 $presentation-h2-font-size: 46px !default;
 $presentation-h3-font-size: 18px !default;
 $presentation-title-slide-text-align: left !default;
 
-$code-block-bg: $riso-code-bg !default;
-$code-block-color: $riso-paper !default;
-$code-block-border-color: $riso-code-bg !default;
 $code-block-font-size: 17px !default;
 $code-color: $riso-ink !default;
 $code-bg: $riso-pink-light !default;
@@ -60,11 +58,10 @@ $code-bg: $riso-pink-light !default;
 $callout-color-note: $riso-blue !default;
 $callout-color-tip: $riso-pink !default;
 $callout-color-important: $riso-ink !default;
-$callout-color-caution: #FF6C2F !default;
-$callout-color-warning: #FF6C2F !default;
+$callout-color-caution: $riso-orange !default;
+$callout-color-warning: $riso-orange !default;
 
 $tabset-border-color: $riso-ink !default;
-
 
 /*-- scss:rules --*/
 
@@ -75,11 +72,26 @@ $tabset-border-color: $riso-ink !default;
   background-repeat: repeat;
 }
 
-// ---- slide frame ------------------------------------------------------------
-
-.reveal .slides {
-  text-align: left;
+// pink highlighter stroke behind the lower half of the text
+@mixin riso-marker {
+  background: linear-gradient(transparent 56%, $riso-pink-marker 56%);
 }
+
+// small rotated label, like a taped-on tag
+@mixin riso-sticker {
+  display: inline-block;
+  font-family: $font-family-monospace;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 1.4;
+  background: $riso-ink;
+  color: $riso-paper;
+  padding: 7px 16px;
+  transform: rotate(-3deg);
+}
+
+// ---- slide frame ------------------------------------------------------------
 
 .reveal .slides section.slide,
 .reveal .slides section#title-slide {
@@ -90,17 +102,11 @@ $tabset-border-color: $riso-ink !default;
 
 // ---- headings ---------------------------------------------------------------
 
-.reveal h1,
-.reveal h2,
-.reveal h3 {
-  font-family: $riso-heading-font;
-}
-
 // slide titles get a pink highlighter stroke behind their lower half
 .reveal .slide:not(.title-slide) > h2 {
   width: fit-content;
   max-width: 100%;
-  background: linear-gradient(transparent 56%, $riso-pink-marker 56%);
+  @include riso-marker;
   margin: 0 0 30px;
 }
 
@@ -118,7 +124,6 @@ $tabset-border-color: $riso-ink !default;
 }
 
 .reveal a {
-  color: $riso-ink;
   text-decoration: underline;
   text-decoration-color: $riso-pink;
   text-decoration-thickness: 6px;
@@ -229,16 +234,11 @@ $tabset-border-color: $riso-ink !default;
   align-items: flex-start;
 
   > .column {
-    flex-shrink: 1;
     min-width: 0;
   }
 }
 
 // ---- code -------------------------------------------------------------------
-
-.reveal code {
-  font-family: $font-family-monospace;
-}
 
 .reveal :not(pre) > code {
   padding: 2px 8px;
@@ -256,16 +256,12 @@ $tabset-border-color: $riso-ink !default;
   overflow: visible;
 
   pre {
-    border: none;
-    box-shadow: none;
     margin: 0;
   }
 }
 
 .reveal pre {
-  font-size: $code-block-font-size;
   line-height: 1.6;
-  width: 100%;
 }
 
 .reveal pre code {
@@ -327,19 +323,18 @@ $tabset-border-color: $riso-ink !default;
   border: 4px dashed $riso-ink !important;
   border-radius: 0;
   background: $riso-pink-light;
-  box-shadow: none;
   transform: rotate(-1deg);
   font-size: 20px;
   line-height: 1.4;
 
   &.callout-note,
   &.callout-important {
-    background: #D6E6F4;
+    background: $riso-blue-tint;
   }
 
   &.callout-caution,
   &.callout-warning {
-    background: #FFE0CC;
+    background: $riso-orange-tint;
   }
 
   // title and content sit on one line, like a label
@@ -353,7 +348,6 @@ $tabset-border-color: $riso-ink !default;
 
   .callout-title {
     background: transparent !important;
-    border: none;
     padding: 0;
     margin: 0;
     flex-shrink: 0;
@@ -376,16 +370,10 @@ $tabset-border-color: $riso-ink !default;
 
   .callout-content {
     padding: 0;
-    font-size: 1em;
 
     p {
       margin: 0;
     }
-  }
-
-  // untitled callouts
-  .callout-body > .callout-content:only-child {
-    padding: 0;
   }
 
   :not(pre) > code {
@@ -403,20 +391,12 @@ $tabset-border-color: $riso-ink !default;
 
 // [text]{.highlight}: marker stroke
 .reveal .highlight {
-  background: linear-gradient(transparent 56%, $riso-pink-marker 56%);
+  @include riso-marker;
 }
 
-// [text]{.sticker}: rotated label, like a taped-on tag
+// [text]{.sticker}: rotated label
 .reveal .sticker {
-  display: inline-block;
-  font-family: $font-family-monospace;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1.4;
-  background: $riso-ink;
-  color: $riso-paper;
-  padding: 7px 16px;
-  transform: rotate(-3deg);
+  @include riso-sticker;
 }
 
 // [text]{.misprint}: misregistered pink shadow
@@ -448,7 +428,6 @@ $tabset-border-color: $riso-ink !default;
   grid-template-rows: auto 1fr auto;
   column-gap: 26px;
   align-items: center;
-  text-align: left;
 
   // pink ink blob, top right
   &::before {
@@ -482,19 +461,11 @@ $tabset-border-color: $riso-ink !default;
   }
 
   .subtitle {
+    @include riso-sticker;
     grid-row: 1;
     grid-column: 1 / -1;
     justify-self: start;
-    font-family: $font-family-monospace;
-    font-size: 18px;
-    font-weight: 700;
-    font-style: normal;
-    line-height: 1.4;
-    color: $riso-paper;
-    background: $riso-ink;
-    padding: 7px 16px;
     margin: 0;
-    transform: rotate(-3deg);
   }
 
   .title {
