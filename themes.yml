@@ -24,3 +24,9 @@
   description: >
     The journal article, projected. Book serifs, booktabs tables, running
     heads, small-caps labels and theorem-style remarks.
+- title: Brutalist Pop
+  path: themes/pop.html
+  image: screenshots/pop/title.png
+  description: >
+    Neo-brutalist UI energy: thick black outlines, hard offset shadows,
+    flat primaries and zero radius. Everything looks clickable.
