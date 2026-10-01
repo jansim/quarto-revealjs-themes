@@ -1,6 +1,6 @@
 // Take screenshots of every rendered theme deck.
 //
-// Usage: node scripts/screenshots.mjs [theme ...]
+// Usage: node util/screenshots.mjs [theme ...]
 //
 // Expects the site to be rendered already (`quarto render`). For each
 // _site/themes/<theme>.html it captures a fixed set of slides from the shared

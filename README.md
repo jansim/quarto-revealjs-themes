@@ -38,8 +38,10 @@ themes/<id>.qmd        3-line page per theme: sets format, includes template.qmd
 themes.yml             theme registry, drives the landing page listing
 index.qmd              landing page (gallery of themes.yml)
 _quarto.yml            website project: renders index.qmd + themes/*.qmd to _site/
-scripts/screenshots.mjs  Playwright script: _site/themes/*.html -> screenshots/<id>/
-scripts/new-theme.sh   scaffolds a new theme (extension, page, registry entry)
+util/                  build tooling, kept out of the way:
+  screenshots.mjs      Playwright script: _site/themes/*.html -> screenshots/<id>/
+  new-theme.sh         scaffolds a new theme (extension, page, registry entry)
+  package.json         Node deps for the screenshots (Playwright only)
 ```
 
 How the pieces fit together:
@@ -49,7 +51,7 @@ How the pieces fit together:
    over the one in the template, so the same content renders with each theme.
 2. `quarto render` builds the website: the landing page plus one deck per theme
    at `_site/themes/<id>.html`.
-3. `npm run screenshots` opens each rendered deck in headless Chromium and
+3. `npm --prefix util run screenshots` opens each rendered deck in headless Chromium and
    captures the title, a section, the code and the table slides, plus a 2x2
    `overview.png`, into `screenshots/<id>/` (also copied into `_site/`).
 4. The GitHub Actions workflow runs both steps and deploys `_site/` to
@@ -60,13 +62,13 @@ deterministic and CI needs neither R nor Python.
 
 ## Development
 
-Requirements: Quarto ≥ 1.4 and Node ≥ 18.
+Requirements: Quarto ≥ 1.4, plus Node ≥ 18 for the screenshots only.
 
 ```bash
-npm install
-npx playwright install chromium   # once
-npm run build                     # quarto render + screenshots
-quarto preview                    # live preview while editing a theme
+npm --prefix util install
+npx --prefix util playwright install chromium   # once
+npm --prefix util run build                     # quarto render + screenshots
+quarto preview                                  # live preview while editing a theme
 ```
 
 Commit the updated `screenshots/` so the README previews stay current.
@@ -74,11 +76,11 @@ Commit the updated `screenshots/` so the README previews stay current.
 ### Adding a theme
 
 ```bash
-scripts/new-theme.sh swiss "Swiss Grid"
+util/new-theme.sh swiss "Swiss Grid"
 ```
 
 This creates `_extensions/swiss/`, `themes/swiss.qmd` and a `themes.yml` entry.
-Then style `_extensions/swiss/swiss.scss` and run `npm run build`.
+Then style `_extensions/swiss/swiss.scss` and run `npm --prefix util run build`.
 
 Besides the usual Quarto/reveal.js elements, the sample deck uses a few classes
 that every theme should style:

@@ -5,7 +5,5 @@ index.qmd
 themes/
 themes.yml
 screenshots/
-scripts/
-package.json
-package-lock.json
+util/
 README.md

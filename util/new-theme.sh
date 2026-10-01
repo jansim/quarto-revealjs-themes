@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Scaffold a new theme: extension, demo page and registry entry.
-# Usage: scripts/new-theme.sh <id> "<Title>"
+# Usage: util/new-theme.sh <id> "<Title>"
 set -euo pipefail
 
-id="${1:?usage: scripts/new-theme.sh <id> \"<Title>\"}"
+id="${1:?usage: util/new-theme.sh <id> \"<Title>\"}"
 title="${2:-$id}"
 root="$(cd "$(dirname "$0")/.." && pwd)"
 
@@ -75,4 +75,4 @@ cat >> "$root/themes.yml" <<YAML
 YAML
 
 echo "Created theme '$id'. Next: edit _extensions/$id/$id.scss and the description in themes.yml,"
-echo "then run: npm run build"
+echo "then run: npm --prefix util run build"

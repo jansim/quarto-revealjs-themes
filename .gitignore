@@ -1,6 +1,6 @@
 /.quarto/
 /_site/
-/node_modules/
+node_modules/
 *_files/
 template.html
 .DS_Store
