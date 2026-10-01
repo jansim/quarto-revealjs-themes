@@ -7,6 +7,8 @@ contributes:
     revealjs:
       theme: [default, riso.scss]
       highlight-style: riso.theme
+      margin: 0
+      code-line-numbers: false
       slide-number: true
       transition: none
       date-format: long

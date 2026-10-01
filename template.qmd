@@ -60,10 +60,16 @@ Numbered lists work too:
 
 ## Code runs where the prose lives
 
+:::: {.columns}
+
+::: {.column width="45%"}
 - Chunks execute at render time
 - Results stay in sync with the text
 - Skip re-runs with `freeze: auto`
+- See the [reveal.js guide](https://quarto.org/docs/presentations/revealjs/)
+:::
 
+::: {.column width="55%"}
 ```python
 # mean bill length by species
 import seaborn as sns
@@ -74,6 +80,9 @@ df = sns.load_dataset("penguins")
    .mean()
    .round(1))
 ```
+:::
+
+::::
 
 ## Palmer penguins at a glance
 
@@ -83,12 +92,14 @@ df = sns.load_dataset("penguins")
 | Chinstrap |    68 |      48.8 |    3,733 |
 | Gentoo    |   124 |      47.5 |    5,076 |
 
-: Data: palmerpenguins (Horst, Hill & Gorman, 2020)
-
 ::: {.callout-tip}
 ## Tip!
 
 Caption any table with the `tbl-cap` chunk option.
+:::
+
+::: aside
+data: palmerpenguins (Horst, Hill & Gorman, 2020)
 :::
 
 ## Maths and callouts
@@ -105,7 +116,7 @@ Callouts come in five flavours: note, tip, important, caution and warning.
 
 # Wrapping up
 
-## Thank you {.center}
+## Thank you
 
 [Slides made with Quarto]{.sticker}
 

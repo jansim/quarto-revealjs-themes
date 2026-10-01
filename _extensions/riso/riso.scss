@@ -4,12 +4,13 @@
 // Two risograph inks on uncoated paper: fluorescent pink over medium blue,
 // overprinting to violet. Halftone fields, slight misregistration and
 // taped-on stickers.
+//
+// px values below are in slide pixels (default 1050x700) and scale with the deck.
 
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
 // inks & paper
 $riso-paper: #F3EEE3 !default;
-$riso-paper-dark: #E7DFCF !default;
 $riso-ink: #153E86 !default;         // dark blue, used for text
 $riso-ink-deep: #0B2556 !default;
 $riso-pink: #FF48B0 !default;        // fluorescent pink
@@ -24,6 +25,10 @@ $font-family-sans-serif: "Instrument Sans", "Helvetica Neue", sans-serif !defaul
 $font-family-monospace: "Space Mono", "SFMono-Regular", Menlo, monospace !default;
 $riso-heading-font: "Bricolage Grotesque", "Instrument Sans", sans-serif !default;
 
+// slide padding
+$riso-pad-y: 46px !default;
+$riso-pad-x: 56px !default;
+
 // reveal / quarto variables
 $body-bg: $riso-paper !default;
 $body-color: $riso-ink !default;
@@ -31,23 +36,24 @@ $link-color: $riso-ink !default;
 $selection-bg: $riso-pink !default;
 $selection-color: $riso-paper !default;
 
-$presentation-font-size-root: 34px !default;
+$presentation-font-size-root: 23px !default;
 $presentation-line-height: 1.4 !default;
+$presentation-block-margin: 16px !default;
 $presentation-heading-font: $riso-heading-font !default;
 $presentation-heading-color: $riso-ink !default;
 $presentation-heading-font-weight: 800 !default;
 $presentation-heading-letter-spacing: -0.02em !default;
 $presentation-heading-line-height: 1.05 !default;
 $presentation-heading-text-transform: none !default;
-$presentation-h1-font-size: 2.6em !default;
-$presentation-h2-font-size: 1.45em !default;
-$presentation-h3-font-size: 1.1em !default;
+$presentation-h1-font-size: 66px !default;
+$presentation-h2-font-size: 46px !default;
+$presentation-h3-font-size: 18px !default;
 $presentation-title-slide-text-align: left !default;
 
 $code-block-bg: $riso-code-bg !default;
 $code-block-color: $riso-paper !default;
 $code-block-border-color: $riso-code-bg !default;
-$code-block-font-size: 0.6em !default;
+$code-block-font-size: 17px !default;
 $code-color: $riso-ink !default;
 $code-bg: $riso-pink-light !default;
 
@@ -62,24 +68,24 @@ $tabset-border-color: $riso-ink !default;
 
 /*-- scss:rules --*/
 
-// misregistered offset shadow in pink, the signature of the theme
-@mixin riso-misprint($x: 4px, $y: 3px) {
-  text-shadow: $x $y 0 $riso-pink;
-}
-
 // a halftone dot field, printed in blue
-@mixin riso-halftone($dot: 1.5px, $step: 7px, $color: $riso-blue) {
-  background-image: radial-gradient($color $dot, transparent ($dot + 0.4px));
+@mixin riso-halftone($dot: 3px, $step: 11px, $color: $riso-blue) {
+  background-image: radial-gradient($color $dot, transparent ($dot + 0.8px));
   background-size: $step $step;
   background-repeat: repeat;
 }
 
-.reveal {
-  font-feature-settings: "tnum" 1;
-}
+// ---- slide frame ------------------------------------------------------------
 
 .reveal .slides {
   text-align: left;
+}
+
+.reveal .slides section.slide,
+.reveal .slides section#title-slide {
+  box-sizing: border-box;
+  height: 100%;
+  padding: $riso-pad-y $riso-pad-x;
 }
 
 // ---- headings ---------------------------------------------------------------
@@ -90,19 +96,16 @@ $tabset-border-color: $riso-ink !default;
   font-family: $riso-heading-font;
 }
 
-// slide titles get a pink highlighter stroke behind them
+// slide titles get a pink highlighter stroke behind their lower half
 .reveal .slide:not(.title-slide) > h2 {
   width: fit-content;
   max-width: 100%;
-  background: linear-gradient(transparent 58%, $riso-pink-marker 58%);
-  padding: 0 0.1em;
-  margin-left: -0.1em;
-  margin-bottom: 0.6em;
+  background: linear-gradient(transparent 56%, $riso-pink-marker 56%);
+  margin: 0 0 30px;
 }
 
 .reveal h3 {
   font-family: $font-family-monospace;
-  font-size: 0.6em;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -110,16 +113,20 @@ $tabset-border-color: $riso-ink !default;
 
 // ---- text -------------------------------------------------------------------
 
+.reveal p {
+  line-height: 1.5;
+}
+
 .reveal a {
   color: $riso-ink;
   text-decoration: underline;
   text-decoration-color: $riso-pink;
-  text-decoration-thickness: 0.12em;
-  text-underline-offset: 0.14em;
+  text-decoration-thickness: 6px;
+  text-underline-offset: 6px;
+  text-decoration-skip-ink: none;
 
   &:hover {
     color: $riso-ink-deep;
-    text-decoration-color: $riso-blue;
   }
 }
 
@@ -130,54 +137,101 @@ $tabset-border-color: $riso-ink !default;
 // diamond bullets in pink ink
 .reveal ul,
 .reveal ul ul {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
   list-style: none;
-  padding-left: 0;
-  margin-left: 1.1em;
+  padding: 0;
+  margin: 0 0 $presentation-block-margin 0;
+  line-height: 1.4;
 
   > li {
     position: relative;
+    padding-left: 33px;
 
     &::before {
       content: "";
       position: absolute;
-      left: -1em;
-      top: 0.5em;
-      width: 0.36em;
-      height: 0.36em;
+      left: 4px;
+      top: 0.45em;
+      width: 15px;
+      height: 15px;
       background: $riso-pink;
       transform: rotate(45deg);
     }
   }
+}
 
-  ul > li::before {
+.reveal ul ul {
+  margin: 18px 0 0;
+
+  > li::before {
     background: transparent;
-    border: 2px solid $riso-pink;
+    border: 3px solid $riso-pink;
     box-sizing: border-box;
+    width: 11px;
+    height: 11px;
+    left: 6px;
   }
 }
 
-.reveal ol > li::marker {
-  font-family: $font-family-monospace;
-  font-weight: 700;
-  color: $riso-pink;
+.reveal ol {
+  margin-left: 33px;
+
+  > li {
+    padding-left: 4px;
+    margin-bottom: 10px;
+  }
+
+  > li::marker {
+    font-family: $font-family-monospace;
+    font-weight: 700;
+    color: $riso-pink;
+  }
 }
 
 .reveal blockquote {
   width: auto;
-  margin: 1em 0;
-  padding: 0.6em 0.9em;
+  margin: 23px 0;
+  padding: 16px 23px;
   font-style: normal;
   color: $riso-ink;
   background: $riso-pink-light;
-  border: 3px solid $riso-ink;
-  box-shadow: 6px 6px 0 $riso-blue;
+  border: 4px solid $riso-ink;
+  box-shadow: 8px 8px 0 $riso-blue;
   transform: rotate(-0.6deg);
+
+  p {
+    margin: 0;
+  }
 }
 
-.reveal aside,
-.reveal .aside-footnotes,
-.reveal .slide .footnotes {
+// source lines, footnotes and other small print
+.reveal .slide div.aside,
+.reveal .slide aside {
+  left: $riso-pad-x;
+  bottom: $riso-pad-y;
   font-family: $font-family-monospace;
+  font-size: 16px;
+  color: $riso-ink;
+}
+
+.reveal .footnotes,
+.reveal .aside-footnotes {
+  font-family: $font-family-monospace;
+}
+
+// ---- columns ----------------------------------------------------------------
+
+.reveal .columns {
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+
+  > .column {
+    flex-shrink: 1;
+    min-width: 0;
+  }
 }
 
 // ---- code -------------------------------------------------------------------
@@ -187,37 +241,50 @@ $tabset-border-color: $riso-ink !default;
 }
 
 .reveal :not(pre) > code {
-  padding: 0.05em 0.3em;
-  border-radius: 3px;
+  padding: 2px 8px;
+  border-radius: 6px;
   font-size: 0.86em;
 }
 
 .reveal div.sourceCode {
+  background: $riso-code-bg;
   border: none;
-  border-radius: 6px;
-  box-shadow: 7px 7px 0 $riso-pink;
-  margin: 0.6em 0 1em;
+  border-radius: 10px;
+  box-shadow: 8px 8px 0 $riso-pink;
+  transform: rotate(1deg);
+  margin: 0 8px 16px 0;
   overflow: visible;
 
   pre {
     border: none;
+    box-shadow: none;
+    margin: 0;
   }
+}
+
+.reveal pre {
+  font-size: $code-block-font-size;
+  line-height: 1.6;
+  width: 100%;
 }
 
 .reveal pre code {
   color: $riso-paper;
   background-color: $riso-code-bg;
+  max-height: none;
 }
 
 .reveal div.sourceCode pre code {
-  padding: 0.8em 1em;
+  padding: 23px 26px;
 }
 
 // ---- tables -----------------------------------------------------------------
 
 .reveal table {
+  width: 100%;
+  margin: 0 0 26px;
   border-collapse: collapse;
-  font-size: 0.75em;
+  font-size: 21px;
   font-variant-numeric: tabular-nums;
 
   thead th {
@@ -225,50 +292,104 @@ $tabset-border-color: $riso-ink !default;
     color: $riso-paper;
     font-family: $riso-heading-font;
     font-weight: 800;
+    font-size: 20px;
     border-bottom: none;
-    padding: 0.35em 0.6em;
+    padding: 11px 16px;
   }
 
   tbody td {
-    border-bottom: 2px solid $riso-ink;
-    padding: 0.35em 0.6em;
+    border-bottom: 4px solid $riso-ink;
+    padding: 11px 16px;
   }
 
   tbody tr:nth-child(odd) td {
     background: $riso-pink-tint;
   }
 
+  tbody tr:last-child td {
+    border-bottom: 4px solid $riso-ink;
+  }
+
   caption {
     font-family: $font-family-monospace;
-    font-size: 0.8em;
+    font-size: 16px;
+    text-align: left;
   }
 }
 
 // ---- callouts: taped-on stickers -------------------------------------------
 
-.reveal div.callout {
-  border: 2px dashed $riso-ink !important;
-  border-left-width: 2px !important;
+// section div. for specificity over Quarto's 0.7em callout rule
+.reveal .slides section div.callout {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 20px;
+  border: 4px dashed $riso-ink !important;
   border-radius: 0;
   background: $riso-pink-light;
   box-shadow: none;
-  transform: rotate(-0.8deg);
+  transform: rotate(-1deg);
+  font-size: 20px;
+  line-height: 1.4;
 
-  .callout-header,
+  &.callout-note,
+  &.callout-important {
+    background: #D6E6F4;
+  }
+
+  &.callout-caution,
+  &.callout-warning {
+    background: #FFE0CC;
+  }
+
+  // title and content sit on one line, like a label
+  .callout-body {
+    font-weight: 400;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 13px 20px;
+  }
+
   .callout-title {
     background: transparent !important;
-    border-bottom: none;
-    font-family: $riso-heading-font;
-    font-weight: 800;
-    color: $riso-ink;
+    border: none;
+    padding: 0;
+    margin: 0;
+    flex-shrink: 0;
+
+    p {
+      margin: 0;
+    }
+
+    strong {
+      font-family: $riso-heading-font;
+      font-weight: 800;
+      font-size: 23px;
+      color: $riso-ink;
+    }
   }
 
-  .callout-icon::before {
-    filter: none;
+  .callout-icon-container {
+    display: none;
   }
 
-  &.callout-note {
-    background: #D6E6F4;
+  .callout-content {
+    padding: 0;
+    font-size: 1em;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  // untitled callouts
+  .callout-body > .callout-content:only-child {
+    padding: 0;
+  }
+
+  :not(pre) > code {
+    background: $riso-paper;
   }
 }
 
@@ -276,14 +397,13 @@ $tabset-border-color: $riso-ink !default;
 
 // [text]{.alert}: ink-pink emphasis
 .reveal .alert {
-  color: darken($riso-pink, 12%);
+  color: darken($riso-pink, 14%);
   font-weight: 600;
 }
 
 // [text]{.highlight}: marker stroke
 .reveal .highlight {
-  background: linear-gradient(transparent 55%, $riso-pink-marker 55%);
-  padding: 0 0.08em;
+  background: linear-gradient(transparent 56%, $riso-pink-marker 56%);
 }
 
 // [text]{.sticker}: rotated label, like a taped-on tag
@@ -291,16 +411,17 @@ $tabset-border-color: $riso-ink !default;
   display: inline-block;
   font-family: $font-family-monospace;
   font-weight: 700;
-  font-size: 0.6em;
+  font-size: 18px;
+  line-height: 1.4;
   background: $riso-ink;
   color: $riso-paper;
-  padding: 0.25em 0.7em;
+  padding: 7px 16px;
   transform: rotate(-3deg);
 }
 
 // [text]{.misprint}: misregistered pink shadow
 .reveal .misprint {
-  @include riso-misprint(0.06em, 0.045em);
+  text-shadow: 0.06em 0.045em 0 $riso-pink;
 }
 
 // .halftone on a slide: blue dot field behind the content
@@ -309,85 +430,128 @@ $tabset-border-color: $riso-ink !default;
 }
 
 // ---- title slide ------------------------------------------------------------
+//
+//  [subtitle sticker]
+//
+//  BIG MISPRINTED            ( pink blob )
+//  TITLE                   ( halftone disc )
+//
+//  Author  ✶  Affiliation  ✶  Date
 
-// pink ink blob top right, with a blue halftone disc overprinting it
-.reveal .slide-background.quarto-title-block .slide-background-content {
-  background-image: radial-gradient(circle closest-side, $riso-pink 0 99%, transparent 100%);
-  background-size: 46vmin 46vmin;
-  background-position: calc(100% + 6vmin) -9vmin;
-  background-repeat: no-repeat;
-}
-
-.reveal .slide-background.quarto-title-block .slide-background-content::after {
-  content: "";
-  position: absolute;
-  right: 18%;
-  top: 22%;
-  width: 34vmin;
-  height: 34vmin;
-  border-radius: 50%;
-  @include riso-halftone(2.2px, 8px);
-  mix-blend-mode: multiply;
-}
-
-#title-slide {
+.reveal .slides section#title-slide {
+  padding: 52px 59px;
+  // reveal sets display inline; a grid is needed to pin the byline to the bottom
+  &.present {
+    display: grid !important;
+  }
+  grid-template-columns: auto auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  column-gap: 26px;
+  align-items: center;
   text-align: left;
 
-  .title {
-    font-size: 2.3em;
-    line-height: 0.92;
-    letter-spacing: -0.035em;
-    max-width: 72%;
-    margin-bottom: 0.3em;
-    @include riso-misprint(5px, 4px);
+  // pink ink blob, top right
+  &::before {
+    content: "";
+    position: absolute;
+    right: -66px;
+    top: -82px;
+    width: 459px;
+    height: 459px;
+    border-radius: 50%;
+    background: $riso-pink;
+    mix-blend-mode: multiply;
+  }
+
+  // blue halftone disc, overprinting the blob
+  &::after {
+    content: "";
+    position: absolute;
+    right: 115px;
+    top: 148px;
+    width: 361px;
+    height: 361px;
+    border-radius: 50%;
+    @include riso-halftone(4.4px, 13px);
+    mix-blend-mode: multiply;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
   }
 
   .subtitle {
-    display: inline-block;
+    grid-row: 1;
+    grid-column: 1 / -1;
+    justify-self: start;
     font-family: $font-family-monospace;
-    font-size: 0.6em;
+    font-size: 18px;
     font-weight: 700;
     font-style: normal;
-    letter-spacing: 0.02em;
-    background: $riso-ink;
+    line-height: 1.4;
     color: $riso-paper;
-    padding: 0.25em 0.7em;
-    margin: 0 0 1.4em;
-    transform: rotate(-2deg);
+    background: $riso-ink;
+    padding: 7px 16px;
+    margin: 0;
+    transform: rotate(-3deg);
+  }
+
+  .title {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    max-width: 600px;
+    margin: 0;
+    font-size: 82px;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    text-shadow: 6px 4px 0 $riso-pink;
   }
 
   .quarto-title-authors {
+    grid-row: 3;
+    grid-column: 1;
     display: flex;
     flex-wrap: wrap;
+    gap: 0 26px;
     justify-content: flex-start;
-    gap: 0.4em 1.6em;
-    margin-top: 0.6em;
   }
 
   .quarto-title-author {
+    display: flex;
+    gap: 26px;
+    align-items: baseline;
     padding: 0;
   }
 
-  .quarto-title-author-name {
-    font-weight: 600;
-    font-size: 0.75em;
-  }
-
+  .quarto-title-author-name,
   .quarto-title-affiliation,
-  .quarto-title-author-email,
   .date {
-    font-family: $font-family-monospace;
-    font-size: 0.5em;
-    margin: 0.2em 0 0;
+    font-size: 21px;
+    font-weight: 600;
+    margin: 0;
   }
 
+  .quarto-title-affiliation::before,
   .date::before {
-    content: "\2736\00a0\00a0";
-    color: $riso-pink;
+    content: "\2736";
+    margin-right: 26px;
+  }
+
+  .date {
+    grid-row: 3;
+    grid-column: 2;
+  }
+
+  .quarto-title-author-email {
+    display: none;
   }
 }
 
 // ---- section slides (# level-1 headings) ------------------------------------
+//
+// Halftone background, a giant section number printed twice in misregistered
+// blue and pink, and the heading on a slip of paper bottom left.
 
 .reveal .slides {
   counter-reset: riso-section;
@@ -402,27 +566,28 @@ $tabset-border-color: $riso-ink !default;
   counter-increment: riso-section;
 
   h1 {
-    position: relative;
-    display: inline-block;
-    font-size: 1.9em;
+    position: absolute;
+    left: $riso-pad-x + 4px;
+    bottom: $riso-pad-y + 7px;
+    margin: 0;
+    font-size: 66px;
     line-height: 1;
+    letter-spacing: -0.02em;
     background: $riso-paper;
-    padding: 0.2em 0.4em;
+    padding: 13px 23px;
     transform: rotate(-1.5deg);
-    margin-top: 3.4em;
     z-index: 1;
   }
 
-  // two passes of the section number, misregistered, overprinting to violet
   &::before,
   &::after {
     content: counter(riso-section, decimal-leading-zero);
     position: absolute;
-    left: 0.15em;
-    top: -0.62em;
+    left: 66px;
+    top: 10px;
     font-family: $riso-heading-font;
     font-weight: 800;
-    font-size: 7.6em;
+    font-size: 410px;
     line-height: 1;
     letter-spacing: -0.05em;
     color: $riso-blue;
@@ -431,8 +596,9 @@ $tabset-border-color: $riso-ink !default;
   }
 
   &::after {
+    left: 82px;
+    top: 20px;
     color: $riso-pink;
-    transform: translate(0.04em, 0.025em);
   }
 }
 
