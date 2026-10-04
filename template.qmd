@@ -1,5 +1,5 @@
 ---
-title: Reproducible reports with Quarto
+title: "Reproducible reports *with Quarto*"
 subtitle: a field guide
 author:
   - name: Your Name
