@@ -56,14 +56,17 @@ $code-bg: $pop-black !default;
 .reveal .slides {
   counter-reset: pop-section;
 
-  // every slide is an outlined card
   section.slide,
   section#title-slide {
     box-sizing: border-box;
     height: 100%;
     padding: 40px 50px;
-    box-shadow: inset 0 0 0 $pop-line $pop-black;
   }
+}
+
+// every slide is an outlined card, framing the whole window
+.reveal .slide-background-content {
+  box-shadow: inset 0 0 0 $pop-line $pop-black;
 }
 
 // yellow cover, blue section slides
