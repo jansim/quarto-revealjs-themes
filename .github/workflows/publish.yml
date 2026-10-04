@@ -11,8 +11,9 @@ permissions:
   pages: write
   id-token: write
 
+# one group per branch: PR runs no longer cancel each other, main still deploys in order
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
