@@ -40,6 +40,7 @@ template.qmd           the shared sample deck every theme renders
 themes/<id>.qmd        tiny page per theme: includes template.qmd, sets format
 themes.yml             theme registry, drives the landing page listing
 index.qmd              landing page (gallery of themes.yml)
+site.scss              website theme for the gallery, styled after Riso Zine
 _quarto.yml            website project: renders index.qmd + themes/*.qmd to _site/
 util/                  build tooling, kept out of the way:
   screenshots.mjs      Playwright script: _site/themes/*.html -> screenshots/<id>/
