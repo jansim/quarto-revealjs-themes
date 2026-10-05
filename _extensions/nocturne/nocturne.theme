@@ -1,0 +1,28 @@
+{
+  "text-color": "#C9CED6",
+  "background-color": "#161B22",
+  "text-styles": {
+    "Keyword": {"text-color": "#C8F169"},
+    "ControlFlow": {"text-color": "#C8F169"},
+    "Import": {"text-color": "#C8F169"},
+    "Preprocessor": {"text-color": "#C8F169"},
+    "BuiltIn": {"text-color": "#ECEEF2"},
+    "Function": {"text-color": "#ECEEF2"},
+    "Extension": {"text-color": "#ECEEF2"},
+    "DataType": {"text-color": "#ECEEF2"},
+    "String": {"text-color": "#8FB8FF"},
+    "VerbatimString": {"text-color": "#8FB8FF"},
+    "SpecialString": {"text-color": "#8FB8FF"},
+    "Char": {"text-color": "#8FB8FF"},
+    "SpecialChar": {"text-color": "#8FB8FF"},
+    "DecVal": {"text-color": "#FFB86B"},
+    "BaseN": {"text-color": "#FFB86B"},
+    "Float": {"text-color": "#FFB86B"},
+    "Constant": {"text-color": "#FFB86B"},
+    "Comment": {"text-color": "#8C95A3", "italic": true},
+    "Documentation": {"text-color": "#8C95A3", "italic": true},
+    "CommentVar": {"text-color": "#8C95A3", "italic": true},
+    "Annotation": {"text-color": "#8C95A3", "italic": true},
+    "Information": {"text-color": "#8C95A3", "italic": true}
+  }
+}

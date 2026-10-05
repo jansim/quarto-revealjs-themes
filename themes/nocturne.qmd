@@ -1,5 +1,5 @@
 {{< include ../template.qmd >}}
 
 ---
-format: riso-revealjs
+format: nocturne-revealjs
 ---
