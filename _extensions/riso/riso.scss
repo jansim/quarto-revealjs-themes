@@ -529,7 +529,7 @@ $tabset-border-color: $riso-ink !default;
 }
 
 .reveal .slide-background.level1:not(.quarto-title-block) .slide-background-content {
-  @include riso-halftone;
+  @include riso-halftone(4.6px, 16px);
 }
 
 // level-1 slides sit inside a vertical stack, so no child combinator here
@@ -539,7 +539,7 @@ $tabset-border-color: $riso-ink !default;
   h1 {
     position: absolute;
     left: $riso-pad-x + 4px;
-    bottom: $riso-pad-y + 7px;
+    bottom: $riso-pad-y + 72px;
     margin: 0;
     font-size: 66px;
     line-height: 1;
