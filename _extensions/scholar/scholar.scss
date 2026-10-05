@@ -1,0 +1,385 @@
+/*-- scss:defaults --*/
+
+// Scholar
+// The journal article, projected: book serifs, booktabs tables, running
+// heads, small-caps labels and theorem-style remarks.
+//
+// px values below are in slide pixels (default 1050x700) and scale with the deck.
+
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Sans+Condensed:wght@500;600&family=Inconsolata:wght@400;600&display=swap');
+
+$sch-paper: #FDFDFB !default;
+$sch-ink: #1B1E24 !default;
+$sch-ink-soft: #3B3F4A !default;
+$sch-muted: #5B6070 !default;
+$sch-rule: #C9CBD1 !default;
+$sch-accent: #8C1C2E !default;     // oxblood
+$sch-code-bg: #F2F2EE !default;
+
+$font-family-serif: "Source Serif 4", Georgia, serif !default;
+$font-family-monospace: "Inconsolata", "SFMono-Regular", Menlo, monospace !default;
+$sch-heading-font: "Spectral", Georgia, serif !default;
+$sch-label-font: "IBM Plex Sans Condensed", "Helvetica Neue", sans-serif !default;
+
+$body-bg: $sch-paper !default;
+$body-color: $sch-ink !default;
+$link-color: $sch-accent !default;
+
+$font-family-sans-serif: $font-family-serif !default;
+$presentation-font-size-root: 22px !default;
+$presentation-line-height: 1.45 !default;
+$presentation-block-margin: 16px !default;
+$presentation-heading-font: $sch-heading-font !default;
+$presentation-heading-font-weight: 400 !default;
+$presentation-heading-line-height: 1.1 !default;
+$presentation-h1-font-size: 58px !default;
+$presentation-h2-font-size: 38px !default;
+$presentation-h3-font-size: 16px !default;
+$presentation-title-slide-text-align: center !default;
+
+$code-block-font-size: 18px !default;
+$code-color: $sch-accent !default;
+$code-bg: transparent !default;
+
+/*-- scss:rules --*/
+
+// letter-spaced small caps, used for labels
+@mixin sch-label($size: 16px) {
+  font-family: $sch-label-font;
+  font-size: $size;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.reveal .slides {
+  counter-reset: sch-section;
+
+  section.slide,
+  section#title-slide {
+    box-sizing: border-box;
+    height: 100%;
+    padding: 29px 64px;
+  }
+}
+
+// running head on slides inside a section: a hairline with "§2" on the right
+.reveal .slides > section > section.level2::before {
+  content: "\00A7" counter(sch-section);
+  display: block;
+  margin-bottom: 26px;
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid $sch-rule;
+  @include sch-label(14px);
+  text-align: right;
+  color: $sch-muted;
+}
+
+.reveal h2 {
+  font-weight: 600;
+  margin-bottom: 22px;
+}
+
+.reveal h3 {
+  @include sch-label;
+  color: $sch-accent;
+}
+
+// ---- text ----------------------------------------------------------------------
+
+.reveal a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+// en-dash bullets
+.reveal ul {
+  list-style: "\2013\00A0\00A0";
+  margin: 0 0 $presentation-block-margin 26px;
+
+  li {
+    margin-bottom: 5px;
+  }
+
+  ul {
+    list-style: "\00B7\00A0\00A0";
+    margin-top: 5px;
+  }
+}
+
+.reveal ol {
+  margin-left: 30px;
+
+  > li::marker {
+    color: $sch-accent;
+  }
+}
+
+.reveal blockquote {
+  width: auto;
+  margin: 22px 40px;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  font-style: italic;
+  color: $sch-ink-soft;
+
+  p {
+    margin: 0;
+  }
+}
+
+.reveal .slide aside {
+  left: 64px;
+  bottom: 29px;
+  font-size: 16px;
+  color: $sch-muted;
+}
+
+.reveal .columns {
+  display: flex;
+  gap: 38px;
+}
+
+// ---- code ----------------------------------------------------------------------
+
+.reveal :not(pre) > code {
+  font-size: 0.95em;
+}
+
+.reveal .slide div.sourceCode {
+  margin: 0 0 18px;
+  background: $sch-code-bg;
+  border: none;
+  border-top: 1.5px solid $sch-ink;
+  border-bottom: 1.5px solid $sch-ink;
+  border-radius: 0;
+
+  pre {
+    margin: 0;
+    border: none;
+  }
+
+  code {
+    padding: 16px 22px;
+    line-height: 1.45;
+  }
+}
+
+// ---- tables: booktabs ----------------------------------------------------------
+
+.reveal table {
+  width: 100%;
+  margin: 0 0 22px;
+  border-collapse: collapse;
+  border-top: 3px solid $sch-ink;
+  border-bottom: 3px solid $sch-ink;
+  font-size: 22px;
+  font-variant-numeric: lining-nums tabular-nums;
+
+  th,
+  td {
+    border: none;
+    padding: 6px 19px 6px 0;
+  }
+
+  thead th {
+    font-weight: 600;
+    border-bottom: 1.5px solid $sch-ink;
+  }
+
+  tbody tr:first-child td {
+    padding-top: 13px;
+  }
+
+  tbody tr:last-child td {
+    padding-bottom: 13px;
+  }
+}
+
+// ---- callouts: theorem-style remarks -------------------------------------------
+
+// section div. for specificity over Quarto's 0.7em callout rule
+.reveal .slides section div.callout {
+  margin: 0 0 20px;
+  border: none;
+  background: transparent;
+  font-size: 21px;
+
+  // "TIP!  Caption any table ..." on one line
+  .callout-body {
+    display: flex;
+    align-items: baseline;
+    gap: 13px;
+  }
+
+  .callout-title {
+    flex-shrink: 0;
+    padding: 0;
+    background: transparent !important;
+    opacity: 1;
+
+    strong {
+      @include sch-label;
+      color: $sch-accent;
+    }
+  }
+
+  .callout-icon-container {
+    display: none;
+  }
+
+  .callout-content {
+    padding: 0;
+    font-style: italic;
+
+    code {
+      font-style: normal;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+// ---- utility classes -----------------------------------------------------------
+
+.reveal .alert {
+  color: $sch-accent;
+  font-weight: 600;
+}
+
+.reveal .highlight {
+  background: rgba($sch-accent, 0.1);
+  padding: 0 3px;
+}
+
+.reveal .sticker {
+  @include sch-label;
+  display: inline-block;
+  color: $sch-accent;
+  border: 1.5px solid $sch-accent;
+  padding: 3px 12px;
+}
+
+// ---- title slide: centred, between a double and a single rule -----------------
+
+.reveal .slides section#title-slide {
+  // reveal sets display inline; a flex column lets the parts be reordered
+  &.present {
+    display: flex !important;
+  }
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 51px 90px;
+  text-align: center;
+
+  .quarto-title-authors,
+  .quarto-title-author {
+    display: contents;
+  }
+
+  .quarto-title-affiliation {
+    order: 1;
+    @include sch-label;
+    color: $sch-muted;
+    margin: 0;
+  }
+
+  // double rule above the title, single rule below the subtitle
+  &::before,
+  &::after {
+    content: "";
+    order: 2;
+    width: 576px;
+    border-top: 6px double $sch-ink;
+  }
+
+  &::after {
+    order: 5;
+    border-top-width: 1.5px;
+    border-top-style: solid;
+  }
+
+  .title {
+    order: 3;
+    margin: 0;
+    font-size: 64px;
+    line-height: 1.08;
+  }
+
+  .subtitle {
+    order: 4;
+    margin: 0;
+    font-family: $sch-heading-font;
+    font-size: 29px;
+    font-style: italic;
+    color: $sch-accent;
+  }
+
+  .quarto-title-author-name {
+    order: 6;
+    @include sch-label(18px);
+    margin-bottom: -18px;
+  }
+
+  .date {
+    order: 7;
+    margin: 0;
+    font-size: 22px;
+    color: $sch-muted;
+  }
+}
+
+// ---- section slides: oxblood numeral, hairline, "Section 2" label -------------
+
+// level-1 slides sit inside a vertical stack, so no child combinator here
+.reveal .slides section.level1:not(#title-slide) {
+  counter-increment: sch-section;
+
+  &.present {
+    display: grid !important;
+  }
+  grid-template-columns: 272px 1fr;
+  align-items: center;
+  gap: 58px;
+  padding: 64px 90px;
+
+  &::before {
+    content: counter(sch-section, upper-roman);
+    font-family: $sch-heading-font;
+    font-size: 240px;
+    line-height: 0.9;
+    text-align: right;
+    color: $sch-accent;
+  }
+
+  h1 {
+    margin: 0;
+    padding: 6px 0 6px 45px;
+    border-left: 1.5px solid $sch-ink;
+    line-height: 1;
+
+    &::before {
+      content: "Section " counter(sch-section);
+      display: block;
+      margin-bottom: 26px;
+      @include sch-label(18px);
+      color: $sch-muted;
+    }
+  }
+}
+
+// div. for specificity: quarto-support's footer.css loads after the theme
+.reveal div.slide-number {
+  font-family: $font-family-serif;
+  font-size: 16px;
+  color: $sch-muted;
+  right: 26px;
+  bottom: 16px;
+}

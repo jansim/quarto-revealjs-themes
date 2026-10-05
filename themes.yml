@@ -18,3 +18,9 @@
   description: >
     Technical drawing on cyanotype blue. A faint 16/80 px grid, dimension
     lines, a title block on the cover and detail callouts on code.
+- title: Scholar
+  path: themes/scholar.html
+  image: screenshots/scholar/title.png
+  description: >
+    The journal article, projected. Book serifs, booktabs tables, running
+    heads, small-caps labels and theorem-style remarks.
