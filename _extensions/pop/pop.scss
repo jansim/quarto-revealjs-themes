@@ -161,12 +161,14 @@ $code-bg: $pop-black !default;
   }
 }
 
-.reveal blockquote {
+// .slide for specificity: Quarto's inline styles reset the box-shadow
+.reveal .slide blockquote {
   @include pop-box($pop-cream);
   margin: 22px 10px 26px 0;
   padding: 16px 22px;
   font-style: normal;
   font-weight: 600;
+  color: $pop-black;
 
   p {
     margin: 0;

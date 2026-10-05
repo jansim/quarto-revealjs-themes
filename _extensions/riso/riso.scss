@@ -195,7 +195,8 @@ $tabset-border-color: $riso-ink !default;
   }
 }
 
-.reveal blockquote {
+// .slide for specificity: Quarto's inline styles reset the box-shadow
+.reveal .slide blockquote {
   width: auto;
   margin: 23px 0;
   padding: 16px 23px;
@@ -246,7 +247,7 @@ $tabset-border-color: $riso-ink !default;
   font-size: 0.86em;
 }
 
-.reveal div.sourceCode {
+.reveal .slide div.sourceCode {
   background: $riso-code-bg;
   border: none;
   border-radius: 10px;
@@ -270,7 +271,7 @@ $tabset-border-color: $riso-ink !default;
   max-height: none;
 }
 
-.reveal div.sourceCode pre code {
+.reveal .slide div.sourceCode pre code {
   padding: 23px 26px;
 }
 
