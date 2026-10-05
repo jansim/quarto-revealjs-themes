@@ -11,6 +11,7 @@ can compare them side by side on the
 | **[Nocturne](https://jansim.github.io/quarto-revealjs-themes/themes/nocturne.html)**: dark keynote, with serif drama on near-black, quiet orbit lines and one luminous accent | `nocturne-revealjs` | [![Nocturne](screenshots/nocturne.png)](https://jansim.github.io/quarto-revealjs-themes/themes/nocturne.html) |
 | **[Blueprint](https://jansim.github.io/quarto-revealjs-themes/themes/blueprint.html)**: technical drawing on cyanotype blue, with a faint grid, dimension lines and a title block | `blueprint-revealjs` | [![Blueprint](screenshots/blueprint.png)](https://jansim.github.io/quarto-revealjs-themes/themes/blueprint.html) |
 | **[Scholar](https://jansim.github.io/quarto-revealjs-themes/themes/scholar.html)**: the journal article, projected, with book serifs, booktabs tables, running heads and small-caps labels | `scholar-revealjs` | [![Scholar](screenshots/scholar.png)](https://jansim.github.io/quarto-revealjs-themes/themes/scholar.html) |
+| **[Brutalist Pop](https://jansim.github.io/quarto-revealjs-themes/themes/pop.html)**: neo-brutalist UI energy, with thick black outlines, hard offset shadows and flat primaries | `pop-revealjs` | [![Brutalist Pop](screenshots/pop.png)](https://jansim.github.io/quarto-revealjs-themes/themes/pop.html) |
 
 ## Use
 
