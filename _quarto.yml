@@ -15,3 +15,7 @@ website:
     right:
       - icon: github
         href: https://github.com/jansim/quarto-themes
+
+format:
+  html:
+    theme: [default, site.scss]
