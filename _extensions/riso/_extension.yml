@@ -12,3 +12,4 @@ contributes:
       slide-number: true
       transition: none
       date-format: long
+      include-after-body: riso-sections.html
