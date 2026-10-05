@@ -9,9 +9,9 @@ project:
 
 website:
   title: Quarto Reveal.js Themes
-  site-url: https://jansim.github.io/quarto-themes/
-  repo-url: https://github.com/jansim/quarto-themes
+  site-url: https://jansim.github.io/quarto-revealjs-themes/
+  repo-url: https://github.com/jansim/quarto-revealjs-themes
   navbar:
     right:
       - icon: github
-        href: https://github.com/jansim/quarto-themes
+        href: https://github.com/jansim/quarto-revealjs-themes

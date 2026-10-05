@@ -121,4 +121,4 @@ Callouts come in five flavours: note, tip, important, caution and warning.
 [Slides made with Quarto]{.sticker}
 
 Questions? Find the source at
-[github.com/jansim/quarto-themes](https://github.com/jansim/quarto-themes).
+[github.com/jansim/quarto-revealjs-themes](https://github.com/jansim/quarto-revealjs-themes).

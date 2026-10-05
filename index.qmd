@@ -11,7 +11,7 @@ listing:
   sort: false
 ---
 
-Every theme below renders the **same** [sample deck](https://github.com/jansim/quarto-themes/blob/main/template.qmd),
+Every theme below renders the **same** [sample deck](https://github.com/jansim/quarto-revealjs-themes/blob/main/template.qmd),
 so you can compare them like for like. Click a theme to open its live slides.
 
 ## Use a theme
@@ -19,7 +19,7 @@ so you can compare them like for like. Click a theme to open its live slides.
 Install the extensions into an existing project:
 
 ```bash
-quarto add jansim/quarto-themes
+quarto add jansim/quarto-revealjs-themes
 ```
 
 Then set the theme's format in your document's front matter, e.g.
