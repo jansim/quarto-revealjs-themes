@@ -3,22 +3,22 @@
 A collection of themes for [Quarto](https://quarto.org/) reveal.js presentations.
 Every theme renders the same sample deck ([`template.qmd`](template.qmd)), so you
 can compare them side by side on the
-[live gallery](https://jansim.github.io/quarto-themes/).
+[live gallery](https://jansim.github.io/quarto-revealjs-themes/).
 
 | Theme | Format | Preview |
 |-------|--------|---------|
-| **Riso Zine**: two risograph inks on uncoated paper, with halftone fields and misregistered type | `riso-revealjs` | [![Riso Zine](screenshots/riso.png)](https://jansim.github.io/quarto-themes/themes/riso.html) |
-| **Nocturne**: dark keynote, with serif drama on near-black, quiet orbit lines and one luminous accent | `nocturne-revealjs` | [![Nocturne](screenshots/nocturne.png)](https://jansim.github.io/quarto-themes/themes/nocturne.html) |
-| **Blueprint**: technical drawing on cyanotype blue, with a faint grid, dimension lines and a title block | `blueprint-revealjs` | [![Blueprint](screenshots/blueprint.png)](https://jansim.github.io/quarto-themes/themes/blueprint.html) |
-| **Scholar**: the journal article, projected, with book serifs, booktabs tables, running heads and small-caps labels | `scholar-revealjs` | [![Scholar](screenshots/scholar.png)](https://jansim.github.io/quarto-themes/themes/scholar.html) |
-| **Brutalist Pop**: neo-brutalist UI energy, with thick black outlines, hard offset shadows and flat primaries | `pop-revealjs` | [![Brutalist Pop](screenshots/pop.png)](https://jansim.github.io/quarto-themes/themes/pop.html) |
+| **[Riso Zine](https://jansim.github.io/quarto-revealjs-themes/themes/riso.html)**: two risograph inks on uncoated paper, with halftone fields and misregistered type | `riso-revealjs` | [![Riso Zine](screenshots/riso.png)](https://jansim.github.io/quarto-revealjs-themes/themes/riso.html) |
+| **[Nocturne](https://jansim.github.io/quarto-revealjs-themes/themes/nocturne.html)**: dark keynote, with serif drama on near-black, quiet orbit lines and one luminous accent | `nocturne-revealjs` | [![Nocturne](screenshots/nocturne.png)](https://jansim.github.io/quarto-revealjs-themes/themes/nocturne.html) |
+| **[Blueprint](https://jansim.github.io/quarto-revealjs-themes/themes/blueprint.html)**: technical drawing on cyanotype blue, with a faint grid, dimension lines and a title block | `blueprint-revealjs` | [![Blueprint](screenshots/blueprint.png)](https://jansim.github.io/quarto-revealjs-themes/themes/blueprint.html) |
+| **[Scholar](https://jansim.github.io/quarto-revealjs-themes/themes/scholar.html)**: the journal article, projected, with book serifs, booktabs tables, running heads and small-caps labels | `scholar-revealjs` | [![Scholar](screenshots/scholar.png)](https://jansim.github.io/quarto-revealjs-themes/themes/scholar.html) |
+| **[Brutalist Pop](https://jansim.github.io/quarto-revealjs-themes/themes/pop.html)**: neo-brutalist UI energy, with thick black outlines, hard offset shadows and flat primaries | `pop-revealjs` | [![Brutalist Pop](screenshots/pop.png)](https://jansim.github.io/quarto-revealjs-themes/themes/pop.html) |
 
 ## Use
 
 Add the themes to an existing project:
 
 ```bash
-quarto add jansim/quarto-themes
+quarto add jansim/quarto-revealjs-themes
 ```
 
 then pick one in your document's front matter:
@@ -30,7 +30,7 @@ format: riso-revealjs
 Or start a new project from the sample deck:
 
 ```bash
-quarto use template jansim/quarto-themes
+quarto use template jansim/quarto-revealjs-themes
 ```
 
 ## Repository layout

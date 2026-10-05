@@ -1,5 +1,5 @@
 {
-  "name": "quarto-themes-util",
+  "name": "quarto-revealjs-themes-util",
   "private": true,
   "type": "module",
   "scripts": {
