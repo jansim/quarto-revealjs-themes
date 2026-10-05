@@ -1,0 +1,415 @@
+/*-- scss:defaults --*/
+
+// Brutalist Pop
+// Neo-brutalist UI energy: thick black outlines, hard offset shadows, flat
+// primaries and zero radius. Everything looks clickable, nothing is subtle.
+//
+// px values below are in slide pixels (default 1050x700) and scale with the deck.
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,400;0,600;0,700;1,400&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap');
+
+$pop-black: #0A0A0A !default;
+$pop-white: #FFFFFF !default;
+$pop-cream: #F1EFE8 !default;
+$pop-yellow: #FFE14D !default;
+$pop-blue: #3050FF !default;
+$pop-pink: #FF4F8B !default;
+
+// outlines and shadows
+$pop-line: 5px !default;
+$pop-shadow: 10px 10px 0 $pop-black !default;
+
+$font-family-sans-serif: "Archivo", "Helvetica Neue", sans-serif !default;
+$font-family-monospace: "DM Mono", "SFMono-Regular", Menlo, monospace !default;
+$pop-heading-font: "Archivo Black", "Archivo", sans-serif !default;
+
+$body-bg: $pop-white !default;
+$body-color: $pop-black !default;
+$link-color: $pop-black !default;
+
+$presentation-font-size-root: 22px !default;
+$presentation-line-height: 1.4 !default;
+$presentation-block-margin: 18px !default;
+$presentation-heading-font: $pop-heading-font !default;
+$presentation-heading-font-weight: 400 !default;
+$presentation-heading-letter-spacing: -0.01em !default;
+$presentation-heading-line-height: 1.05 !default;
+$presentation-heading-text-transform: uppercase !default;
+$presentation-h1-font-size: 45px !default;
+$presentation-h2-font-size: 38px !default;
+$presentation-h3-font-size: 19px !default;
+$presentation-title-slide-text-align: left !default;
+
+$code-block-font-size: 18px !default;
+$code-color: $pop-yellow !default;
+$code-bg: $pop-black !default;
+
+/*-- scss:rules --*/
+
+// the basic brutalist box: outline plus hard shadow
+@mixin pop-box($bg: $pop-white, $shadow: $pop-shadow) {
+  background: $bg;
+  border: $pop-line solid $pop-black;
+  box-shadow: $shadow;
+}
+
+.reveal .slides {
+  counter-reset: pop-section;
+
+  section.slide,
+  section#title-slide {
+    box-sizing: border-box;
+    height: 100%;
+    padding: 40px 50px;
+  }
+}
+
+// every slide is an outlined card, framing the whole window
+.reveal .slide-background-content {
+  box-shadow: inset 0 0 0 $pop-line $pop-black;
+}
+
+// yellow cover, blue section slides
+.reveal .slide-background.quarto-title-block .slide-background-content {
+  background: $pop-yellow;
+}
+
+.reveal .slide-background.level1 .slide-background-content {
+  background: $pop-blue;
+}
+
+// slide titles: a yellow label
+.reveal h2 {
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 29px;
+  padding: 8px 19px;
+  background: $pop-yellow;
+  border: $pop-line solid $pop-black;
+}
+
+.reveal h3 {
+  color: $pop-blue;
+}
+
+// ---- text ----------------------------------------------------------------------
+
+.reveal .slides a {
+  background: $pop-yellow;
+  border-bottom: 3px solid $pop-black;
+  padding: 0 3px;
+  text-decoration: none;
+
+  &:hover {
+    background: $pop-black;
+    color: $pop-yellow;
+  }
+}
+
+// not on the line anchors pandoc puts in code blocks
+.reveal .slides div.sourceCode a {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+// square blue bullets with a black outline
+.reveal ul {
+  padding: 0;
+  margin: 0 0 $presentation-block-margin 0;
+  font-weight: 600;
+
+  li {
+    list-style: none;
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 16px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: 0.4em;
+      width: 13px;
+      height: 13px;
+      background: $pop-blue;
+      outline: 3px solid $pop-black;
+    }
+  }
+
+  ul {
+    margin: 16px 0 0;
+
+    li::before {
+      background: $pop-yellow;
+    }
+  }
+}
+
+.reveal ol {
+  margin-left: 32px;
+  font-weight: 600;
+
+  > li {
+    margin-bottom: 10px;
+  }
+
+  > li::marker {
+    font-family: $pop-heading-font;
+    color: $pop-blue;
+  }
+}
+
+.reveal blockquote {
+  @include pop-box($pop-cream);
+  margin: 22px 10px 26px 0;
+  padding: 16px 22px;
+  font-style: normal;
+  font-weight: 600;
+
+  p {
+    margin: 0;
+  }
+}
+
+.reveal .slide aside {
+  left: 50px;
+  bottom: 40px;
+  font-family: $font-family-monospace;
+  font-size: 16px;
+  color: $pop-black;
+}
+
+.reveal .columns {
+  display: flex;
+  gap: 36px;
+}
+
+// ---- code ----------------------------------------------------------------------
+
+.reveal :not(pre) > code {
+  padding: 2px 8px;
+  font-size: 0.88em;
+}
+
+.reveal .slide div.sourceCode {
+  @include pop-box($pop-black, 10px 10px 0 $pop-blue);
+  border-radius: 0;
+  margin: 0 10px 18px 0;
+
+  pre {
+    margin: 0;
+    box-shadow: none;
+  }
+
+  code {
+    padding: 19px 22px;
+    line-height: 1.6;
+  }
+}
+
+// ---- tables --------------------------------------------------------------------
+
+.reveal table {
+  width: 100%;
+  margin: 0 0 26px;
+  border-collapse: collapse;
+  font-size: 21px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+
+  th,
+  td,
+  tbody tr:last-child td {
+    border: $pop-line solid $pop-black;
+    padding: 8px 16px;
+  }
+
+  thead th {
+    background: $pop-yellow;
+    font-family: $pop-heading-font;
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+}
+
+// ---- callouts: a blue button with a yellow tag ---------------------------------
+
+// section div. for specificity over Quarto's 0.7em callout rule
+.reveal .slides section div.callout {
+  @include pop-box(var(--pop-callout), 8px 8px 0 $pop-black);
+  margin: 0 10px 20px 0;
+  border-radius: 0;
+  color: $pop-white;
+  font-size: 21px;
+  font-weight: 600;
+
+  --pop-callout: #{$pop-blue};
+
+  &.callout-caution,
+  &.callout-warning {
+    --pop-callout: #{$pop-pink};
+  }
+
+  // title and content sit on one line, like a label
+  .callout-body {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 11px 16px;
+  }
+
+  .callout-title {
+    flex-shrink: 0;
+    padding: 0;
+    background: transparent !important;
+    opacity: 1;
+
+    p {
+      margin: 0;
+    }
+
+    strong {
+      display: inline-block;
+      padding: 1px 10px;
+      background: $pop-yellow;
+      border: 3px solid $pop-black;
+      font-family: $pop-heading-font;
+      font-weight: 400;
+      font-size: 18px;
+      text-transform: uppercase;
+      color: $pop-black;
+    }
+  }
+
+  .callout-icon-container {
+    display: none;
+  }
+
+  .callout-content {
+    padding: 0;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+// ---- utility classes -----------------------------------------------------------
+
+.reveal .alert {
+  color: $pop-blue;
+  font-weight: 700;
+}
+
+.reveal .highlight {
+  background: $pop-yellow;
+  padding: 0 4px;
+}
+
+// [text]{.sticker} and the cover's subtitle: a tilted blue button
+.reveal .sticker,
+.reveal .slides section#title-slide .subtitle {
+  @include pop-box($pop-blue);
+  display: inline-block;
+  padding: 10px 18px;
+  font-family: $pop-heading-font;
+  font-size: 22px;
+  font-style: normal;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: $pop-white;
+  transform: rotate(-4deg);
+}
+
+// ---- title slide: big title, sticker, outlined chips at the bottom ------------
+
+.reveal .slides section#title-slide {
+  // reveal sets display inline; a grid is needed to pin the chips to the bottom
+  &.present {
+    display: grid !important;
+  }
+  grid-template-columns: auto auto auto 1fr;
+  // title and sticker centred in the space above the chips, never on them
+  grid-template-rows: 1fr auto auto 1fr auto;
+  column-gap: 19px;
+  padding: 48px 54px;
+
+  .title {
+    grid-area: 2 / 1 / 3 / -1;
+    max-width: 760px;
+    margin: 0;
+    font-size: 80px;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    grid-area: 3 / 1 / 4 / -1;
+    justify-self: end;
+    margin: 8px 0 0;
+    font-size: 26px;
+  }
+
+  .quarto-title-authors,
+  .quarto-title-author {
+    display: contents;
+  }
+
+  // name, affiliation and date as outlined chips
+  .quarto-title-author-name,
+  .quarto-title-affiliation,
+  .date {
+    grid-row: 5;
+    margin: 0;
+    padding: 6px 19px;
+    background: $pop-white;
+    border: $pop-line solid $pop-black;
+    font-size: 21px;
+    font-weight: 700;
+  }
+}
+
+// ---- section slides: giant shadowed number, heading in a white box ------------
+
+// level-1 slides sit inside a vertical stack, so no child combinator here
+.reveal .slides section.level1:not(#title-slide) {
+  counter-increment: pop-section;
+
+  &.present {
+    display: flex !important;
+  }
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 29px;
+
+  &::before {
+    content: counter(pop-section, decimal-leading-zero);
+    font-family: $pop-heading-font;
+    font-size: 304px;
+    line-height: 0.8;
+    letter-spacing: -0.04em;
+    color: $pop-white;
+    text-shadow: 13px 13px 0 $pop-black;
+  }
+
+  h1 {
+    @include pop-box;
+    margin: 0;
+    padding: 13px 26px;
+  }
+}
+
+// div. for specificity: quarto-support's footer.css loads after the theme
+.reveal div.slide-number {
+  font-family: $font-family-monospace;
+  font-size: 13px;
+  font-weight: 500;
+  background: $pop-black;
+  color: $pop-yellow;
+  padding: 4px 8px;
+}
