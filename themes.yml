@@ -12,3 +12,9 @@
   description: >
     Dark keynote, stage-ready. Serif drama on near-black, quiet orbit lines
     and one luminous lime accent that the italics carry.
+- title: Blueprint
+  path: themes/blueprint.html
+  image: screenshots/blueprint/title.png
+  description: >
+    Technical drawing on cyanotype blue. A faint 16/80 px grid, dimension
+    lines, a title block on the cover and detail callouts on code.
