@@ -4,7 +4,9 @@
 // Technical drawing on cyanotype blue: a faint 16/80 px grid, dimension
 // lines, a title block on the cover and detail callouts on code.
 //
-// px values below are in slide pixels (default 1050x700) and scale with the deck.
+// px values below are in slide pixels (1120x720, set in _extension.yml) and
+// scale with the deck. The slide is 14x9 major grid cells, so keep paddings
+// and fixed sizes on multiples of 16px to stay on the grid.
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:ital,wght@0,400;0,500;1,400&family=Martian+Mono:wght@400;600&display=swap');
 
@@ -53,14 +55,30 @@ $code-bg: transparent !default;
   text-transform: uppercase;
 }
 
-// grid paper
+// grid paper, scaled with the slides and anchored to the slide's top-left
+// corner, so it lines up with the content at any window size. reveal.js keeps
+// the slides centred in the viewport and sets these variables on every resize.
+$bp-grid-major: 80px;
+$bp-grid-minor: 16px;
+
 .reveal-viewport {
+  --bp-scale: var(--slide-scale, 1);
+  --bp-major: calc(#{$bp-grid-major} * var(--bp-scale));
+  --bp-minor: calc(#{$bp-grid-minor} * var(--bp-scale));
+  --bp-x: calc((var(--viewport-width, 100vw) - var(--slide-width, 1120px) * var(--bp-scale)) / 2);
+  --bp-y: calc((var(--viewport-height, 100vh) - var(--slide-height, 720px) * var(--bp-scale)) / 2);
+
   background-image:
     linear-gradient(rgba(#FFF, 0.14) 1px, transparent 1px),
     linear-gradient(90deg, rgba(#FFF, 0.14) 1px, transparent 1px),
     linear-gradient(rgba(#FFF, 0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(#FFF, 0.06) 1px, transparent 1px);
-  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+  background-size:
+    var(--bp-major) var(--bp-major),
+    var(--bp-major) var(--bp-major),
+    var(--bp-minor) var(--bp-minor),
+    var(--bp-minor) var(--bp-minor);
+  background-position: var(--bp-x) var(--bp-y);
 }
 
 .reveal .slides {
@@ -70,7 +88,7 @@ $code-bg: transparent !default;
   section#title-slide {
     box-sizing: border-box;
     height: 100%;
-    padding: 46px 52px;
+    padding: 48px;
   }
 }
 
@@ -147,8 +165,8 @@ $code-bg: transparent !default;
 }
 
 .reveal .slide aside {
-  left: 52px;
-  bottom: 46px;
+  left: 48px;
+  bottom: 48px;
   font-family: $font-family-monospace;
   font-size: 14px;
   text-transform: uppercase;
@@ -366,7 +384,11 @@ $code-bg: transparent !default;
   .date {
     display: flex;
     flex-direction: column;
-    margin: 0 -2px -2px 0; // overlap neighbouring borders
+    box-sizing: border-box;
+    // centre the 2px borders on the cell edges, so neighbouring borders overlap
+    // and the outer ones sit on the grid; each row is 64px (4 grid cells)
+    min-height: 66px;
+    margin: -1px;
     padding: 7px 13px;
     border: 2px solid $bp-line;
     background: rgba($bp-deep, 0.7);
@@ -422,7 +444,7 @@ $code-bg: transparent !default;
     display: flex !important;
   }
   align-items: center;
-  gap: 52px;
+  gap: 48px;
 
   &::before {
     content: counter(bp-section, decimal-leading-zero);
