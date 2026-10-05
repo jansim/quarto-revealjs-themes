@@ -22,10 +22,15 @@ Install the extensions into an existing project:
 quarto add jansim/quarto-revealjs-themes
 ```
 
-Then set the theme's format in your document's front matter, e.g.
+Then set the theme's format in your document's front matter, e.g. in this minimal document:
 
-```yaml
+```markdown
+---
+title: My Talk
 format: riso-revealjs
+---
+
+## First Slide
 ```
 
 ## Themes
