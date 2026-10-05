@@ -21,10 +21,15 @@ Add the themes to an existing project:
 quarto add jansim/quarto-revealjs-themes
 ```
 
-then pick one in your document's front matter:
+then pick one in your document's front matter, e.g. in this minimal document:
 
-```yaml
+```markdown
+---
+title: My Talk
 format: riso-revealjs
+---
+
+## First Slide
 ```
 
 Or start a new project from the sample deck:
