@@ -332,7 +332,7 @@ $code-bg: $pop-black !default;
   &.present {
     display: grid !important;
   }
-  grid-template-columns: auto auto auto 1fr;
+  grid-template-columns: auto 1fr;
   // title and sticker centred in the space above the chips, never on them
   grid-template-rows: 1fr auto auto 1fr auto;
   column-gap: 19px;
@@ -354,16 +354,39 @@ $code-bg: $pop-black !default;
     font-size: 26px;
   }
 
-  .quarto-title-authors,
+  // name and affiliation chips wrap onto more rows; the date sits after them
+  .quarto-title-authors {
+    grid-row: 5;
+    grid-column: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 19px;
+  }
+
   .quarto-title-author {
     display: contents;
+  }
+
+  .date {
+    grid-row: 5;
+    grid-column: 2;
+    justify-self: start;
+    align-self: end;
+    white-space: nowrap;
+  }
+
+  .quarto-title-authors:not(:has(.quarto-title-author)) + .date {
+    grid-column: 1;
+  }
+
+  .quarto-title-author-email {
+    display: none;
   }
 
   // name, affiliation and date as outlined chips
   .quarto-title-author-name,
   .quarto-title-affiliation,
   .date {
-    grid-row: 5;
     margin: 0;
     padding: 6px 19px;
     background: $pop-white;

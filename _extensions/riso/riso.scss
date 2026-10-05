@@ -7,7 +7,7 @@
 //
 // px values below are in slide pixels (default 1050x700) and scale with the deck.
 
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Instrument+Sans:ital,wght@0,400;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
 // inks & paper
 $riso-paper: #F3EEE3 !default;
@@ -512,6 +512,15 @@ $tabset-border-color: $riso-ink !default;
   .date {
     grid-row: 3;
     grid-column: 2;
+  }
+
+  // no authors: the date starts the byline, without a separator
+  .quarto-title-authors:not(:has(.quarto-title-author)) + .date {
+    grid-column: 1;
+
+    &::before {
+      content: none;
+    }
   }
 
   .quarto-title-author-email {
