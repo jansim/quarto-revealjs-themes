@@ -12,5 +12,6 @@ contributes:
       slide-number: true
       transition: none
       date-format: long
+      callout-icon: false
       # keep every slide laid out, so CSS section counters stay correct
       view-distance: 100

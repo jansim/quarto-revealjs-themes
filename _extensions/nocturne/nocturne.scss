@@ -118,7 +118,6 @@ $code-bg: transparent !default;
 // lists as ruled rows, like an index
 .reveal :is(ul, ol) {
   display: block;
-  padding: 0;
   margin: 0 0 $presentation-block-margin 0;
   counter-reset: nct-item;
 
@@ -180,7 +179,6 @@ $code-bg: transparent !default;
   margin: 26px 0;
   padding: 0;
   border: none;
-  box-shadow: none;
   font-family: $nct-serif;
   font-size: 34px;
   line-height: 1.15;
@@ -223,11 +221,6 @@ $code-bg: transparent !default;
   border: 1.5px solid $nct-rule;
   border-radius: 0;
 
-  pre {
-    margin: 0;
-    box-shadow: none;
-  }
-
   code {
     padding: 20px 24px;
     line-height: 1.6;
@@ -239,7 +232,6 @@ $code-bg: transparent !default;
 .reveal table {
   width: 100%;
   margin: 0 0 28px;
-  border-collapse: collapse;
   font-size: 22px;
   font-variant-numeric: tabular-nums;
 
@@ -284,26 +276,20 @@ $code-bg: transparent !default;
     background: transparent !important;
     opacity: 1;
 
-    p {
-      margin: 0;
-    }
-
     strong {
       font-weight: 600;
       color: $nct-glow;
     }
   }
 
-  .callout-icon-container {
-    display: none;
-  }
-
   .callout-content {
     padding: 0;
+  }
 
-    p {
-      margin: 0;
-    }
+  // outranks Quarto's margins on the title paragraph
+  .callout-title p,
+  .callout-content p {
+    margin: 0;
   }
 }
 

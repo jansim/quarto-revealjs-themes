@@ -81,8 +81,6 @@ $code-bg: $pop-black !default;
 // slide titles: a yellow label
 .reveal h2 {
   width: fit-content;
-  max-width: 100%;
-  box-sizing: border-box;
   margin-bottom: 29px;
   padding: 8px 19px;
   background: $pop-yellow;
@@ -99,7 +97,6 @@ $code-bg: $pop-black !default;
   background: $pop-yellow;
   border-bottom: 3px solid $pop-black;
   padding: 0 3px;
-  text-decoration: none;
 
   &:hover {
     background: $pop-black;
@@ -116,7 +113,6 @@ $code-bg: $pop-black !default;
 
 // square blue bullets with a black outline
 .reveal ul {
-  padding: 0;
   margin: 0 0 $presentation-block-margin 0;
   font-weight: 600;
 
@@ -124,7 +120,6 @@ $code-bg: $pop-black !default;
     list-style: none;
     position: relative;
     padding-left: 32px;
-    margin-bottom: 16px;
 
     &::before {
       content: "";
@@ -151,10 +146,6 @@ $code-bg: $pop-black !default;
   margin-left: 32px;
   font-weight: 600;
 
-  > li {
-    margin-bottom: 10px;
-  }
-
   > li::marker {
     font-family: $pop-heading-font;
     color: $pop-blue;
@@ -166,7 +157,6 @@ $code-bg: $pop-black !default;
   @include pop-box($pop-cream);
   margin: 22px 10px 26px 0;
   padding: 16px 22px;
-  font-style: normal;
   font-weight: 600;
   color: $pop-black;
 
@@ -200,11 +190,6 @@ $code-bg: $pop-black !default;
   border-radius: 0;
   margin: 0 10px 18px 0;
 
-  pre {
-    margin: 0;
-    box-shadow: none;
-  }
-
   code {
     padding: 19px 22px;
     line-height: 1.6;
@@ -216,7 +201,6 @@ $code-bg: $pop-black !default;
 .reveal table {
   width: 100%;
   margin: 0 0 26px;
-  border-collapse: collapse;
   font-size: 21px;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
@@ -247,7 +231,6 @@ $code-bg: $pop-black !default;
   border-radius: 0;
   color: $pop-white;
   font-size: 21px;
-  font-weight: 600;
 
   --pop-callout: #{$pop-blue};
 
@@ -270,10 +253,6 @@ $code-bg: $pop-black !default;
     background: transparent !important;
     opacity: 1;
 
-    p {
-      margin: 0;
-    }
-
     strong {
       display: inline-block;
       padding: 1px 10px;
@@ -287,16 +266,14 @@ $code-bg: $pop-black !default;
     }
   }
 
-  .callout-icon-container {
-    display: none;
-  }
-
   .callout-content {
     padding: 0;
+  }
 
-    p {
-      margin: 0;
-    }
+  // outranks Quarto's margins on the title paragraph
+  .callout-title p,
+  .callout-content p {
+    margin: 0;
   }
 }
 
@@ -360,7 +337,6 @@ $code-bg: $pop-black !default;
   .quarto-title-authors {
     grid-row: 5;
     grid-column: 1;
-    display: flex;
     flex-wrap: wrap;
     gap: 16px 19px;
   }

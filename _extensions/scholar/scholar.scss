@@ -101,13 +101,8 @@ $code-bg: transparent !default;
   list-style: "\2013\00A0\00A0";
   margin: 0 0 $presentation-block-margin 26px;
 
-  li {
-    margin-bottom: 5px;
-  }
-
   ul {
     list-style: "\00B7\00A0\00A0";
-    margin-top: 5px;
   }
 }
 
@@ -120,11 +115,9 @@ $code-bg: transparent !default;
 }
 
 .reveal blockquote {
-  width: auto;
   margin: 22px 40px;
   padding: 0;
   border: none;
-  box-shadow: none;
   font-style: italic;
   color: $sch-ink-soft;
 
@@ -159,11 +152,6 @@ $code-bg: transparent !default;
   border-bottom: 1.5px solid $sch-ink;
   border-radius: 0;
 
-  pre {
-    margin: 0;
-    border: none;
-  }
-
   code {
     padding: 16px 22px;
     line-height: 1.45;
@@ -175,10 +163,8 @@ $code-bg: transparent !default;
 .reveal table {
   width: 100%;
   margin: 0 0 22px;
-  border-collapse: collapse;
   border-top: 3px solid $sch-ink;
   border-bottom: 3px solid $sch-ink;
-  font-size: 22px;
   font-variant-numeric: lining-nums tabular-nums;
 
   th,
@@ -229,10 +215,6 @@ $code-bg: transparent !default;
     }
   }
 
-  .callout-icon-container {
-    display: none;
-  }
-
   .callout-content {
     padding: 0;
     font-style: italic;
@@ -279,7 +261,6 @@ $code-bg: transparent !default;
   justify-content: center;
   gap: 22px;
   padding: 51px 90px;
-  text-align: center;
 
   .quarto-title-authors,
   .quarto-title-author {
@@ -304,8 +285,7 @@ $code-bg: transparent !default;
 
   &::after {
     order: 5;
-    border-top-width: 1.5px;
-    border-top-style: solid;
+    border-top: 1.5px solid $sch-ink;
   }
 
   .title {
@@ -333,7 +313,6 @@ $code-bg: transparent !default;
   .date {
     order: 7;
     margin: 0;
-    font-size: 22px;
     color: $sch-muted;
   }
 

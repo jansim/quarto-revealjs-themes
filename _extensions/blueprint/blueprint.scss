@@ -97,14 +97,12 @@ $code-bg: transparent !default;
 
 // "+" bullets in yellow, "–" when nested
 .reveal ul {
-  padding: 0;
   margin-left: 0;
 
   li {
     list-style: none;
     position: relative;
     padding-left: 32px;
-    margin-bottom: 14px;
 
     &::before {
       content: "+";
@@ -187,10 +185,6 @@ $code-bg: transparent !default;
     color: $bp-yellow;
   }
 
-  pre {
-    margin: 0;
-  }
-
   code {
     padding: 30px 22px 18px;
     line-height: 1.7;
@@ -202,7 +196,6 @@ $code-bg: transparent !default;
 .reveal table {
   width: 100%;
   margin: 0 0 26px;
-  border-collapse: collapse;
   font-size: 21px;
   font-variant-numeric: tabular-nums;
   background: rgba(4, 20, 56, 0.35);
@@ -263,10 +256,6 @@ $code-bg: transparent !default;
       background: var(--bp-callout);
       color: $bp-deep;
     }
-  }
-
-  .callout-icon-container {
-    display: none;
   }
 
   .callout-content {
