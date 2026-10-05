@@ -552,8 +552,7 @@ $tabset-border-color: $riso-ink !default;
 
   &::before,
   &::after {
-    // --riso-section is set by riso-sections.html; the counter is a fallback
-    content: var(--riso-section, counter(riso-section, decimal-leading-zero));
+    content: counter(riso-section, decimal-leading-zero);
     position: absolute;
     left: 66px;
     top: 10px;
