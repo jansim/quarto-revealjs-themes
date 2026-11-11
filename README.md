@@ -12,6 +12,7 @@ can compare them side by side on the
 | **[Blueprint](https://jansim.github.io/quarto-revealjs-themes/themes/blueprint.html)**: technical drawing on cyanotype blue, with a faint grid, dimension lines and a title block | `blueprint-revealjs` | [![Blueprint](screenshots/blueprint.png)](https://jansim.github.io/quarto-revealjs-themes/themes/blueprint.html) |
 | **[Scholar](https://jansim.github.io/quarto-revealjs-themes/themes/scholar.html)**: the journal article, projected, with book serifs, booktabs tables, running heads and small-caps labels | `scholar-revealjs` | [![Scholar](screenshots/scholar.png)](https://jansim.github.io/quarto-revealjs-themes/themes/scholar.html) |
 | **[Brutalist Pop](https://jansim.github.io/quarto-revealjs-themes/themes/pop.html)**: neo-brutalist UI energy, with thick black outlines, hard offset shadows and flat primaries | `pop-revealjs` | [![Brutalist Pop](screenshots/pop.png)](https://jansim.github.io/quarto-revealjs-themes/themes/pop.html) |
+| **[Bergluft](https://jansim.github.io/quarto-revealjs-themes/themes/bergluft.html)**: outdoors calm on survey paper, with contour maps, ridgelines and yellow alpine trail signs ([extras](_extensions/bergluft/README.md)) | `bergluft-revealjs` | [![Bergluft](screenshots/bergluft.png)](https://jansim.github.io/quarto-revealjs-themes/themes/bergluft.html) |
 
 ## Use
 
@@ -44,10 +45,11 @@ quarto use template jansim/quarto-revealjs-themes
 _extensions/<id>/      one Quarto extension per theme (contributes <id>-revealjs)
 template.qmd           the shared sample deck every theme renders
 themes/<id>.qmd        tiny page per theme: includes template.qmd, sets format
+examples/<id>/         a theme's own deck, for elements the shared one doesn't use
 themes.yml             theme registry, drives the landing page listing
 index.qmd              landing page (gallery of themes.yml)
 site.scss              website theme for the gallery, styled after Riso Zine
-_quarto.yml            website project: renders index.qmd + themes/*.qmd to _site/
+_quarto.yml            website project: renders index.qmd, themes/ and examples/ to _site/
 util/                  build tooling, kept out of the way:
   screenshots.mjs      Playwright script: _site/themes/*.html -> screenshots/<id>/
   new-theme.sh         scaffolds a new theme (extension, page, registry entry)

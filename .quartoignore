@@ -3,6 +3,7 @@
 _quarto.yml
 index.qmd
 themes/
+examples/
 themes.yml
 screenshots/
 util/

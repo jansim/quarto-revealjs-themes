@@ -37,3 +37,6 @@ format: riso-revealjs
 
 ::: {#themes}
 :::
+
+Bergluft also adds elements of its own (trail overviews, signposts, field notes),
+shown in [its own deck](examples/bergluft/).

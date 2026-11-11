@@ -30,3 +30,9 @@
   description: >
     Neo-brutalist UI energy: thick black outlines, hard offset shadows,
     flat primaries and zero radius. Everything looks clickable.
+- title: Bergluft
+  path: themes/bergluft.html
+  image: screenshots/bergluft/title.png
+  description: >
+    Outdoors calm on survey paper. Contour maps, ridgelines, pine ink and
+    yellow alpine trail signs, plus elevation-profile overviews.
